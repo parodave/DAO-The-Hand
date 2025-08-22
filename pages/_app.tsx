@@ -1,35 +1,27 @@
 import type { AppProps } from 'next/app'
-import { WagmiConfig, createConfig, configureChains } from 'wagmi'
+import { WagmiConfig } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { mainnet } from 'wagmi/chains'
-import { publicProvider } from 'wagmi/providers/public'
-import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import '../styles/globals.css'
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
-  [publicProvider()]
-)
-
-const { connectors } = getDefaultWallets({
-  chains,
+const config = getDefaultConfig({
   appName: 'DAO Dashboard',
-  projectId: 'daodemo'
+  projectId: 'daodemo',
+  chains: [mainnet],
 })
 
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-  webSocketPublicClient
-})
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
+    <WagmiConfig config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </QueryClientProvider>
     </WagmiConfig>
   )
 }
