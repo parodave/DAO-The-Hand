@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { supabase } from '@/lib/supabaseClient'
+import { supabase } from '../frontend/lib/supabaseClient'
 import { motion } from 'framer-motion'
 
 export default function Login() {
