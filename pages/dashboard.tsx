@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAccount } from 'wagmi'
-import { supabase } from '@/lib/supabaseClient'
+import { supabase } from '../frontend/lib/supabaseClient'
 import { motion } from 'framer-motion'
 
 const mockBalances = [

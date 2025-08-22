@@ -5,7 +5,6 @@ const supabaseUrl =
 const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'public-anon-key';
 
-// Crée un client compatible SSR/CSR; la persistance session côté serveur est désactivée
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: { persistSession: typeof window !== 'undefined' }
 });
