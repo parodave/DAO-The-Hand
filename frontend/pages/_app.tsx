@@ -3,8 +3,9 @@ import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
-import { GeistSans as Geist } from 'geist/font/sans';
-import { GeistMono as Geist_Mono } from 'geist/font/mono';
+import { Inter, Roboto_Mono } from 'next/font/google';
+const Geist = Inter({ subsets: ['latin'], variable: '--font-geist-sans' });
+const Geist_Mono = Roboto_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
